@@ -1,0 +1,7 @@
+---
+
+- name: execute roles
+  hosts: webserver
+  become: true
+  roles:
+    - apache

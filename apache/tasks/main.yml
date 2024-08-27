@@ -1,0 +1,12 @@
+---
+# tasks file for apache
+  - name: Getting the Host name
+    command: hostname -s
+    notify: Print command message
+  - name: Install apache on webserver
+    package: name={{pkg_name}} state={{pkg_state}}
+  - name: Start apache Server
+    service: name={{pkg_name}} state=started #Started / Restarted / Stopped
+  - name: Deploy html page on apache using template
+    template: src=index.html.j2 dest=/var/www/html/index.html
+    notify: Restart the apache2 server
